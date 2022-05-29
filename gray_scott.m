@@ -14,7 +14,7 @@ Dv = 1e-5;
 % f = 0.02504; k = 0.05; % waves
 % f = 0.022; k = 0.051; % stripe
 
-f = 0.01:0.04/(SPACE_GRID_SIZE-1):0.05;
+f = 0.05:-0.04/(SPACE_GRID_SIZE-1):0.01;
 f = f.' * ones(1, 256);
 k = 0.07:-0.02/(SPACE_GRID_SIZE-1):0.05;
 k = ones(256, 1) * k;
