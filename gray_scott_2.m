@@ -28,18 +28,18 @@ for f = 0.01:0.001:0.05
 
     for i = 1:500
     
-        for t = 1:VISUALIZATION_STEP
-            % ラプラシアンの計算
-            laplacian_u = (circshift(u, 1, 1) + circshift(u, -1, 1) + circshift(u, 1, 2) + circshift(u, -1, 2) - 4 * u) / (dx * dx);
-            laplacian_v = (circshift(v, 1, 1) + circshift(v, -1, 1) + circshift(v, 1, 2) + circshift(v, -1, 2) - 4 * v) / (dx * dx);
-            % Gray - Scottモデル方程式
-            dudt = Du * laplacian_u - u .* v .* v + f * (1.0 - u);
-            dvdt = Dv * laplacian_v + u .* v .* v - (f + k) * v;
-            u = u + dt * dudt;
-            v = v + dt * dvdt;
-        end
+        % ラプラシアンの計算
+        laplacian_u = (circshift(u, 1, 1) + circshift(u, -1, 1) + circshift(u, 1, 2) + circshift(u, -1, 2) - 4 * u) / (dx * dx);
+        laplacian_v = (circshift(v, 1, 1) + circshift(v, -1, 1) + circshift(v, 1, 2) + circshift(v, -1, 2) - 4 * v) / (dx * dx);
+        % Gray - Scottモデル方程式
+        dudt = Du * laplacian_u - u .* v .* v + f * (1.0 - u);
+        dvdt = Dv * laplacian_v + u .* v .* v - (f + k) * v;
+        u = u + dt * dudt;
+        v = v + dt * dvdt;
 
-        scatter(f, u(128, 128));
+        if i > 400
+            scatter(f, u(128, 128), 2, 'filled');
+        end
     end
 
 end
